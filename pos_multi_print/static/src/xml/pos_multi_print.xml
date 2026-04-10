@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductSingleReceipt">
+        <div class="product-receipt">
+            <center>
+                <h3 style="margin: 0;">Product Receipt</h3>
+                <hr style="border-top: 1px dashed #000;"/>
+                <div style="margin: 20px 0;">
+                    <p style="font-size: 24px; font-weight: bold; margin: 10px 0;">
+                        <t t-esc="data.product_name"/>
+                    </p>
+                    <p style="margin: 5px 0;">Quantity: <t t-esc="data.quantity"/></p>
+                    <p style="margin: 5px 0;">Price: <t t-esc="data.price.toFixed(2)"/></p>
+                    <p style="margin: 5px 0;">Order: <t t-esc="data.order_ref"/></p>
+                    <p style="margin: 5px 0;">Date: <t t-esc="data.date"/></p>
+                    <p style="margin: 5px 0;">Customer: <t t-esc="data.customer"/></p>
+                </div>
+                <hr style="border-top: 1px dashed #000;"/>
+                <p style="margin: 10px 0; font-size: 12px;">Thank you for your purchase!</p>
+            </center>
+        </div>
+    </t>
+</templates>

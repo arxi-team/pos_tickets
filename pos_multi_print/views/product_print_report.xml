@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report definition for individual product printing -->
+    <record id="report_pos_product_individual" model="ir.actions.report">
+        <field name="name">Individual Product Print</field>
+        <field name="model">pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_multi_print.product_individual_template</field>
+        <field name="report_file">pos_multi_print.product_individual_template</field>
+        <field name="print_report_name">'Products_{}.pdf'.format(object.name)</field>
+        <field name="binding_model_id" ref="model_pos_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Individual Product Template -->
+    <template id="product_individual_template">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="order">
+                <t t-foreach="order.get_printable_products()" t-as="product">
+                    <div class="page">
+                        <style>
+                            .product-page {
+                                page-break-after: always;
+                                min-height: 100vh;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                padding: 50px;
+                            }
+                            .product-name {
+                                font-size: 72px;
+                                font-weight: bold;
+                                margin: 0;
+                                text-transform: uppercase;
+                            }
+                        </style>
+                        <div class="product-page">
+                            <h1 class="product-name">
+                                <t t-esc="product['name']"/>
+                            </h1>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

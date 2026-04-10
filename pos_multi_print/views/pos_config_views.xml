@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add multi-print configuration to POS Config form -->
+    <record id="pos_config_form_multi_print" model="ir.ui.view">
+        <field name="name">pos.config.form.multi_print</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//setting[field[@name='is_posbox']]" position="after">
+                <setting
+                    string="Multi-Print"
+                    help="Print one paper per product quantity instead of a single receipt"
+                    invisible="context.get('pos_config_create_mode', False)">
+                    <field name="enable_multi_print"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
