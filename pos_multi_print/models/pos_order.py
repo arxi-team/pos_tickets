@@ -7,7 +7,7 @@ from odoo.exceptions import UserError
 class PosOrder(models.Model):
     _inherit = 'pos.order'
 
-    def get_printable_products(self):
+    def get_multi_print_products(self):
         """
         Generate list of products to print (one per quantity)
         Returns a list where each product appears as many times as its quantity
