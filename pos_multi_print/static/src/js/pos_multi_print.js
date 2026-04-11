@@ -249,17 +249,18 @@ patch(PaymentScreen.prototype, {
             htmlContent += `<div class="product-page"><div class="product-name">${safeName}</div></div>`;
         }
 
-        htmlContent += '</body></html>';
+        htmlContent += '<script>';
+        htmlContent += 'window.onload = function() {';
+        htmlContent += '  window.print();';
+        htmlContent += '  setTimeout(function() { window.close(); }, 1000);';
+        htmlContent += '};';
+        htmlContent += '</script></body></html>';
 
         // Print directly
         const printWindow = window.open('', '_blank', 'width=400,height=300');
         if (printWindow) {
             printWindow.document.write(htmlContent);
             printWindow.document.close();
-            printWindow.focus();
-            setTimeout(() => {
-                printWindow.print();
-            }, 300);
         }
     },
 
