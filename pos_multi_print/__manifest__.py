@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'POS Multi Print',
-    'version': '1.0.0',
+    'version': '17.0.0.1',
     'category': 'Point of Sale',
     'summary': 'Print one paper per product quantity in POS',
     'description': """
@@ -21,7 +21,7 @@
     ],
     'assets': {
         'point_of_sale._assets_pos': [
-            'pos_multi_print/static/src/app/pos_multi_print.js',
+            'pos_multi_print/static/src/js/pos_multi_print.js',
         ],
     },
     'installable': True,

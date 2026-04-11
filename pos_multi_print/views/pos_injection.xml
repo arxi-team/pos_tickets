@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Inject JavaScript into POS -->
-    <template id="pos_multi_print_assets" inherit_id="point_of_sale.base_app" name="POS Multi Print Assets" priority="20">
-        <xpath expr="." position="inside">
-            <script type="module" src="/pos_multi_print/static/src/app/pos_multi_print.js"></script>
-        </xpath>
-    </template>
-</odoo>

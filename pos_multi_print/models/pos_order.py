@@ -45,14 +45,6 @@ class PosOrder(models.Model):
             'name': _('Individual Product Papers'),
         }
 
-    @api.model
-    def create_from_ui(self, orders):
-        """
-        Override create_from_ui to handle multi-print after order creation
-        """
-        order_ids = super(PosOrder, self).create_from_ui(orders)
-        return order_ids
-
 
 class PosOrderLine(models.Model):
     _inherit = 'pos.order.line'
