@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'POS Multi Print',
-    'version': '17.0.0.2',
+    'version': '17.0.0.3',
     'category': 'Point of Sale',
     'summary': 'Print one paper per product quantity in POS',
     'description': """

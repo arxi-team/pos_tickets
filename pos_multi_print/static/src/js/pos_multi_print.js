@@ -182,17 +182,33 @@ patch(PaymentScreen.prototype, {
             if (order && !order._printed) {
                 console.log('*** MULTI-PRINT AUTO: Processing', order);
 
-                // Skip the normal automatic printing by marking as printed
-                order._printed = true;
+                // Mark as printed to prevent normal receipt printing
+                this.currentOrder._printed = true;
 
-                // Call parent without automatic printing
-                await super.afterOrderValidation(...arguments);
+                // Do the order validation without the automatic print
+                // Call the parent but temporarily disable iface_print_auto
+                const originalIfacePrintAuto = this.pos.config.iface_print_auto;
+                this.pos.config.iface_print_auto = false;
+
+                try {
+                    await super.afterOrderValidation(...arguments);
+                } finally {
+                    // Restore the setting
+                    this.pos.config.iface_print_auto = originalIfacePrintAuto;
+                }
 
                 // Now do our multi-print
-                const receipt = order.export_for_printing();
+                const receipt = this.currentOrder.export_for_printing();
                 if (receipt.multi_print_products && receipt.multi_print_products.length > 0) {
                     console.log('*** AUTO MULTI-PRINT WITH', receipt.multi_print_products.length, 'PRODUCTS');
                     this._printDirectlyAuto(receipt.multi_print_products);
+                }
+
+                // Force screen transition to ProductScreen or skip based on settings
+                if (this.pos.config.iface_print_skip_screen) {
+                    this.pos.removeOrder(this.currentOrder);
+                    this.pos.add_new_order();
+                    this.pos.showScreen('ProductScreen');
                 }
                 return;
             }
