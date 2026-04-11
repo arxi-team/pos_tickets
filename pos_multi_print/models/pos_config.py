@@ -11,9 +11,3 @@ class PosConfig(models.Model):
         default=False,
         help='Enable printing one paper per product quantity instead of a single receipt'
     )
-
-    # Fix missing field from base Odoo POS module
-    epson_printer_ip = fields.Char(
-        string='Epson Printer IP',
-        help='IP address of the Epson printer'
-    )

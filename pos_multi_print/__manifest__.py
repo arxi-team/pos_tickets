@@ -16,6 +16,7 @@
     'depends': ['point_of_sale'],
     'data': [
         'security/ir.model.access.csv',
+        'views/paper_format.xml',
         'views/pos_config_views.xml',
         'views/product_print_report.xml',
     ],
